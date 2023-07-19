@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+        /*
+        <ul class="ingredients">
+        <li>연어 500그램</li>
+        <li>잣 1 컵</li>
+        <li>버터 상추 2 컵</li>
+        <li>옐로 스쿼시(Yellow Squash, 호박의 한 종류) 1개</li>
+        <li>올리브 오일 1/2 컵</li>
+        <li>마늘 3 쪽</li>
+        </ul>
+        */
+        var dish = React.createElement('ul', null,
+            React.createElement('li', null, '연어 500그램'),
+            React.createElement('li', null, '잣 1 컵'),
+            React.createElement('li', null, '버터 상추 2컵'),
+            React.createElement('li', null, '옐로 스쿼시(Yellow Squash, 호박의 한 종류) 1개'),
+            React.createElement('li', null, '올리브 오일 1/2 컵'),
+            React.createElement('li', null, '마늘 3 쪽')
+        );
+        console.log('dish', dish);
+
+
+        function init() {
+            var container = document.querySelector('.react-container');
+
+            ReactDOM.render(dish, container);
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</head>
+<body>
+<h1></h1>
+<div class="react-container"></div>
+</body>
+</html>

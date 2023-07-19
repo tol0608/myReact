@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+        var dish = React.createElement('h1', null, '구운 연어');
+        console.log('dish', dish);
+
+        // React 라이브러리를 통해 만들어진 엘리멘트는 JS 요소 객체와는 다릅니다.
+
+        function init() {
+            var container = document.querySelector('.react-container');
+
+            ReactDOM.render(dish, container);
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</head>
+<body>
+<h1></h1>
+<div class="react-container"></div>
+</body>
+</html>
