@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        // 옛날방식 -> 생성자 함수를 이용한 명시적...
+        // 함수이름이 대문자로 시작하면 생성자 함수
+        function Vacation(destination, length) {
+            this.destination = destination;
+            this.length = length;
+        }
+
+
+
+        Vacation.prototype.print = function () {
+            console.log('이번 휴가는 ' + this.destination + '으로 ' + this.length + '떠남')
+        };
+
+        var obj = new Vacation('하와이', 10);
+        obj.print();
+    </script>
+</head>
+<body>
+<h1></h1>
+<div class="react-container"></div>
+</body>
+</html>

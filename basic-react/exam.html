@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8"/>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+
+        class PersonList extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    personsChild: []
+                };
+            }
+
+            componentDidMount() {
+                // 데이터 가져오기 (가정: XMLHttpRequest 사용)
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var personsChild = this.parsePersonsJSON(xhr.responseText);
+                        this.setState({personsChild});
+                    }
+                };
+                xhr.open('GET', 'persons.json', true);
+                xhr.send();
+            }
+
+            parsePersonsJSON(jsonStr) {
+                var persons = JSON.parse(jsonStr);
+
+                for (var i in persons) {
+                    var content = '<h4>이름: ' + persons[i].name + '</h4>';
+                    content += '<h4>성별: ' + persons[i].gender + '</h4>';
+                    content += '<h4>나이: ' + persons[i].age + '</h4>';
+                    content += '<h4>분야: ' + persons[i].field + '</h4>';
+
+                    var div = document.createElement('div');
+                    div.setAttribute('class', 'person');
+                    div.innerHTML = content;
+
+                    persons[i] = div;
+                }
+
+                return persons;
+            }
+
+            clearHandler() {
+                this.state({persons: []});
+            }
+
+            init() {
+                document.querySelector('#send').addEventListener('click', () => this.parsePersonsJSON(JSON));
+                document.querySelector('#clear').addEventListener('click', () => this.clearHandler);
+            }
+
+            render() {
+                const {persons} = this.state;
+            }
+
+        }
+    </script>
+    <style>
+        .person {
+            width: 200px;
+            border: 2px solid gray;
+            padding: 20px;
+            margin: 20px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+<h1>인물 정보</h1>
+<hr/>
+
+<button id="send">AJAX Go!</button>
+<button id="clear">Clear!</button>
+
+<div id="persons"></div>
+</body>
+</html>

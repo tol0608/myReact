@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        class Vacation {
+            constructor(destination, length) {
+                this.destination = destination;
+                this.length = length;
+            }
+
+            print() {
+                console.log('이번 휴가는 ' + this.destination + '으로 ' + this.length + ' 일 동안 떠남')
+            };
+        }
+
+        class Expedition extends Vacation {
+            constructor(destination, length, luggage) {
+                super(destination, length);
+                this.luggage = luggage;
+            }
+
+            print() {
+                super.print();
+                console.log('이번 모험을 위해' + this.luggage + ' 을 가지고 떠나야함')
+            };
+        }
+
+        obj = new Expedition('하와이', 10, ['오리발', '산소통', '수영복']);
+        obj.print();
+    </script>
+</head>
+<body>
+<h1></h1>
+<div class="react-container"></div>
+</body>
+</html>

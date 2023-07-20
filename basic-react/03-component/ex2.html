@@ -7,16 +7,16 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script>
         var items = ['연어 500그램', '잣 1 컵', '버터 상추 2컵', '옐로 스쿼시(Yellow Squash, 호박의 한 종류) 1개', '올리브 오일 1/2 컵', '마늘 3 쪽']
-        var dish = React.createElement('ul', {className: 'ingredients'},
-            items.map((ingredients, i) => React.createElement('li', {key: i}, ingredients))
-        );
-        console.log('dish', dish);
 
+        function ingredientsList() {
+            return React.createElement('ul', null,
+                items.map(ingredients => React.createElement('li', null, ingredients))
+            );
+        }
 
         function init() {
             var container = document.querySelector('.react-container');
-
-            ReactDOM.render(dish, container);
+            ReactDOM.render(React.createElement(ingredientsList, null, null), container);
         }
 
         window.addEventListener('load', init);

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <title></title>
+    <meta charset="UTF-8"/>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+        // 리액트를 이용하는 동적 화면 구성
+
+        class ParsePersonsJSON extends React.Component {
+            render() {
+                return React.createElement('h4', {className: 'persons'}, sendHandler)
+            }
+        }
+
+        function parsePersonsJSON(responseText) {
+            return undefined;
+        }
+
+        function sendHandler() {
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener('readystatechange', () => {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var personsChild = parsePersonsJSON(xhr.responseText);
+                        var persons = document.querySelector('#persons');
+                        persons.innerHTML = '';
+
+                        for (var i in personsChild) {
+                            persons.appendChild(personsChild[i]);
+                        }
+                    }
+                }
+            );
+
+            xhr.open('GET', 'persons.json', true);
+            xhr.send();
+
+        }
+
+        function clearHandler() {
+            document.querySelector('#persons').innerHTML = '';
+        }
+
+        function init() {
+            document.querySelector('#send').addEventListener('click', sendHandler);
+            document.querySelector('#clear').addEventListener('click', clearHandler);
+
+
+            var container = document.querySelector('.persons');
+            ReactDom.render(ParsePersonsJSON, container);
+        }
+
+        window.addEventListener('load', init);
+    </script>
+    <style>
+        .person {
+            width: 200px;
+            border: 2px solid gray;
+            padding: 20px;
+            margin: 20px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+<h1>인물 정보</h1>
+<hr/>
+
+<button id="send">AJAX Go!</button>
+<button id="clear">Clear!</button>
+
+<div class="persons"></div>
+</body>
+</html>

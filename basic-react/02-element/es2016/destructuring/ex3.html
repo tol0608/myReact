@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // 객체 구조 분해
+        var sandwich = {
+            bread: '더치크런치',
+            meat: '참치',
+            cheese: '스위스',
+            toppings: ['상추', '토마토', '머스타드']
+        }
+
+        function eat({bread, meat}) {
+            console.log(bread, meat);
+        }
+
+        eat(sandwich);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
