@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8"/>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener('readystatechange', ajaxHandler);
+
+        class Persons extends React.Component {
+            getPersonChild(person) {
+                let labels = ['이름', '성별', '나이', '분야'];
+                let personChild = [];
+                let i = 0;
+
+                for (let key in person) {
+                    personChild.push(React.createElement('h4', {key: i}, labels[i] + ' : ' + person[key]));
+                    i++;
+                }
+
+                return personChild;
+            }
+
+            render() {
+                return React.createElement('div', {className: 'persons'},
+                    this.props.persons.map((person, i) =>
+                        React.createElement('div', {className: 'person', key: i}, this.getPersonChild(person))
+                    )
+                );
+            }
+        }
+
+        function ajaxHandler() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var persons = React.createElement(Persons, {persons: JSON.parse(xhr.responseText)}, null);
+                var container = document.querySelector('.react-container');
+                ReactDOM.render(persons, container);
+            }
+        }
+
+
+        function parsePersonsJSON(jsonStr) {
+            var persons = JSON.parse(jsonStr);
+
+            for (var i in persons) {
+                var content = '<h4>이름: ' + persons[i].name + '</h4>';
+                content += '<h4>성별: ' + persons[i].gender + '</h4>';
+                content += '<h4>나이: ' + persons[i].age + '</h4>';
+                content += '<h4>분야: ' + persons[i].field + '</h4>';
+
+                var div = document.createElement('div');
+                div.setAttribute('class', 'person');
+                div.innerHTML = content;
+
+                persons[i] = div;
+            }
+
+            return persons;
+        }
+
+        function sendHandler() {
+            xhr.open('GET', 'persons.json', true);
+            xhr.send();
+        }
+
+        function clearHandler() {
+            var container = document.querySelector('.react-container');
+            ReactDOM.render(React.createElement('div', {className: 'persons'}, null), container);
+        }
+
+        function init() {
+            document.querySelector('#send').addEventListener('click', sendHandler);
+            document.querySelector('#clear').addEventListener('click', clearHandler);
+        }
+
+        window.addEventListener('load', init);
+    </script>
+    <style>
+        .person {
+            width: 200px;
+            border: 2px solid gray;
+            padding: 20px;
+            margin: 20px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+<h1>인물 정보</h1>
+<hr/>
+
+<button id="send">AJAX Go!</button>
+<button id="clear">Clear!</button>
+
+<div class="react-container"></div>
+</body>
+</html>

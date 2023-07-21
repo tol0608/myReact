@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        const Menu = ({title}) =>
+            <article>
+                <header>
+                    <h1>{title}</h1>
+                </header>
+
+                <div className="recipe">
+                    <h3>이곳에 조리법 삽입</h3>
+                </div>
+            </article>
+
+        function init() {
+            let container = document.querySelector('.react-container');
+
+            ReactDOM.render(
+                <Menu title='맛있는 조리법'/>,
+                container
+            )
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</head>
+<body>
+<h1></h1>
+<div class="react-container"></div>
+</body>
+</html>

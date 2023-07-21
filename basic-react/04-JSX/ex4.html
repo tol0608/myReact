@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script type="text/babel">
+        // 객체 구조 분해
+        class Header extends React.Component {
+            render() {
+                return (<h1>{this.props.message}</h1>)
+            };
+        }
+
+
+        function init() {
+            let container = document.querySelector('.react-container');
+
+            ReactDOM.render(
+                <Header message="Hello, World!"/>,
+                container
+            )
+
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</head>
+<body>
+<h1></h1>
+<div class="react-container"></div>
+</body>
+</html>
