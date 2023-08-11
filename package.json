@@ -1,0 +1,9 @@
+{
+  "name": "myReact",
+  "version": "1.0.0",
+  "description": "myReact",
+  "main": "index.js",
+  "repository": "https://github.com/tol0608/myReact.git",
+  "author": "jaehyeonlee <jerry0608s@gmail.com>",
+  "license": "MIT"
+}
