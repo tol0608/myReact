@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 export default function usePromise(promiseCreator, deps) {
   const [loading, setLoading] = useState(false);
   const [resolved, setResolved] = useState(null);
-  const [eroor, setError] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const process = async () => {
@@ -19,5 +19,5 @@ export default function usePromise(promiseCreator, deps) {
     process();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
-  return [loading, resolved, eroor];
+  return [loading, resolved, error];
 }
